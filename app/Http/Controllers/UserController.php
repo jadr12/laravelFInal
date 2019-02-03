@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
         return view('user-create');
     }
 
-    public function store(Request $request){
+    public function store(StoreUser $request){
         
         $newuser = new User;
         $newuser->name=$request->name;
@@ -26,7 +28,7 @@ class UserController extends Controller
         $newuser->password=$request->password;
         $newuser->save();
 
-        return view('home');
+        return view ('home');
 
     }
     public function show($id){
@@ -37,7 +39,7 @@ class UserController extends Controller
         $user=user::where('id', $id)->first();
         return view ('user-edit',compact('user'));
     }
-    public function update(Request $request ,$id){
+    public function update(UpdateUser $request ,$id){
         $user = user::find($id);
        //$user = new User;
         $user->name=$request->name;

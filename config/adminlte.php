@@ -1,7 +1,7 @@
 <?php
-
+ 
 return [
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -12,13 +12,13 @@ return [
     | You can optionally also specify a title prefix and/or postfix.
     |
     */
-
-    'title' => 'AdminLTE 2',
-
+ 
+    'title' => 'Creud',
+ 
     'title_prefix' => '',
-
+ 
     'title_postfix' => '',
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Logo
@@ -29,11 +29,11 @@ return [
     | variant, used for the mini side bar. Make it 3 letters or so
     |
     */
-
-    'logo' => '<b>Admin</b>LTE',
-
-    'logo_mini' => '<b>A</b>LT',
-
+ 
+    'logo' => '<b>Creud</b>WAZO',
+ 
+    'logo_mini' => '<b>C</b>WZ',
+ 
     /*
     |--------------------------------------------------------------------------
     | Skin Color
@@ -44,9 +44,9 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
-
-    'skin' => 'blue',
-
+ 
+    'skin' => 'red',
+ 
     /*
     |--------------------------------------------------------------------------
     | Layout
@@ -57,9 +57,9 @@ return [
     | removes the sidebar and places your menu in the top navbar
     |
     */
-
+ 
     'layout' => null,
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Collapse Sidebar
@@ -70,9 +70,9 @@ return [
     | this is compatible with layouts except top-nav layout option
     |
     */
-
+ 
     'collapse_sidebar' => false,
-
+ 
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -84,17 +84,17 @@ return [
     | Set register_url to null if you don't want a register link.
     |
     */
-
+ 
     'dashboard_url' => 'home',
-
+ 
     'logout_url' => 'logout',
-
+ 
     'logout_method' => null,
-
+ 
     'login_url' => 'login',
-
+ 
     'register_url' => 'register',
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -106,7 +106,7 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     |
     */
-
+ 
     'menu' => [
         'MAIN NAVIGATION',
         [
@@ -121,12 +121,6 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'user',
-            'icon' => 'user',
-        ],
         [
             'text'    => 'Les utilisateurs',
             'icon'    => 'users',
@@ -139,50 +133,52 @@ return [
                     'text' => 'Ajouter un utilisateur',
                     'url'  => '/user/create',
                 ],
- 
+               
             ],
         ],
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'text'    => 'Les Roles',
+            'icon'    => 'users',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Nos Roles',
+                    'url'  => 'role',
                 ],
                 [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Ajouter un Roles',
+                    'url'  => 'role/create',
+                ],
+               
+            ],
+        ],
+        [
+            'text'    => 'Les Articles',
+            'icon'    => 'users',
+            'submenu' => [
+                [
+                    'text' => 'Nos Articles',
+                    'url'  => 'article',
                 ],
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Ajouter un Article',
+                    'url'  => 'article/create',
                 ],
+               
+            ],
+        ],
+        [
+            'text'    => 'Les Profiles',
+            'icon'    => 'users',
+            'submenu' => [
+                [
+                    'text' => 'Nos Profiles',
+                    'url'  => 'profile',
+                ],
+                [
+                    'text' => 'Ajouter un Profile',
+                    'url'  => 'profile/create',
+                ],
+               
             ],
         ],
         'LABELS',
@@ -199,7 +195,7 @@ return [
             'icon_color' => 'aqua',
         ],
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
@@ -211,7 +207,7 @@ return [
     | built in Gate functionality
     |
     */
-
+ 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
@@ -219,7 +215,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Plugins Initialization
@@ -230,7 +226,7 @@ return [
     | to include the JavaScript file from a CDN via a script tag.
     |
     */
-
+ 
     'plugins' => [
         'datatables' => true,
         'select2'    => true,

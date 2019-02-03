@@ -18,6 +18,8 @@ class UserTableSeeder extends Seeder
             'email'=>'jad@hotmail.com',
             'password' => bcrypt('coding5'),
             'remember_token' => str_random(10),
+            'role_id'=> 1,
+
         
         ]);
    

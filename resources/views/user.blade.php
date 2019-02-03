@@ -29,8 +29,8 @@
             <td>{{ $item->email }}</td>
             <td>
                 <a href="{{ route('user.show', ['id' =>$item->id]) }}"><button type="button" class="btn btn-primary bouton">Show</button></a>
-                <a href="{{ route('user.edit', ['id' =>$item->id]) }}"> <button type="button" class="btn btn-success ml-3">Edit</button></a>
-                <form action="{{ route('user.destroy', ['id' =>$item->id]) }}" method="POST">
+                <a href="{{ route('user.edit', ['id' =>$item->id]) }}"> <button type="button" class="btn btn-success">Edit</button></a>
+                <form style="display: inline;" action="{{ route('user.destroy', ['user' =>$item->id]) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger bouton">Delete</button>
@@ -41,9 +41,5 @@
         </tbody>
 @endforeach
       </table>
-<style>
-    .bouton{
-        margin-left: 25%;
-    }
-</style>
+
 @stop
