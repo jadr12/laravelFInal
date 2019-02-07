@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
+use App\Events\MailEvent;
+
 
 class UserController extends Controller
 {
     public function index(){
+
+        
         $all=User::all();
         return view ('user',compact('all'));
     }
 
     public function create(){
-
         return view('user-create');
     }
 
@@ -39,18 +42,25 @@ class UserController extends Controller
         $user=user::where('id', $id)->first();
         return view ('user-edit',compact('user'));
     }
-    public function update(UpdateUser $request ,$id){
-        $user = user::find($id);
+    public function update(Request $request ,$id){
+        $all = User::find($id);
        //$user = new User;
-        $user->name=$request->name;
-        $user->firstname=$request->firstname;
-        $user->email=$request->email;
-        $user->save();
+        $all->name=$request->name;
+        $all->firstname=$request->firstname;
+        $all->email=$request->email;
+        $all->save();
+        $all = User::all();
 
-        return view('home');
+        return view('user',compact('all'));
     }
-    public function destroy(User $user){
-        $user->delete();
+    public function destroy($all){
+        $all=User::find($all);
+        $all->delete();
+        return redirect()->back();
+    }
+    public function mail(Request $request){
+        event(new MailEvent($request));
+
         return redirect()->back();
     }
 }

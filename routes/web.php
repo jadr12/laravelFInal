@@ -24,3 +24,11 @@ Route::resource('user', 'UserController');
 Route::resource('role', 'RoleController');
 
 Route::resource('article', 'ArticleController');
+
+Route::resource('profile','ProfilController');
+
+Route::get('/mailform',function () {
+    return view('mailform');
+});
+
+Route::post('/mail','UserController@mail')->name('mailform');

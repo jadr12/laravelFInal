@@ -3,11 +3,11 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Creation d'un nouvel utilisateur</h1>
+    <h1>Envoyer un mail</h1>
 @stop
 
 @section('content')
-<form action="{{route('user.store')}}" method="POST">
+<form action="{{route('mailform')}}" method="POST">
     @csrf
     <div class="form-group">
           <label for="">Nom</label>
@@ -19,17 +19,7 @@
           <input type="text"
             class="form-control" name="name" id="" aria-describedby="helpId" placeholder="">
     </div>
-     <div class="form-group">
-       <label for="">Prénom</label>
-       @if($errors->has('firstname'))
-       @foreach ($errors->get('firstname') as $error)
-       <div class='texte-danger'>{{ $errors->first('firstname') }}</div>
-         @endforeach
-         @endif
-       <input type="text"
-         class="form-control" name="firstname" id="" aria-describedby="helpId" placeholder="">
-       </div>
-    <div class="form-group">
+          <div class="form-group">
          <label for="">Email</label>
           @if($errors->has('email'))
           @foreach ($errors->get('email') as $error)
@@ -39,17 +29,18 @@
          <input type="text"
            class="form-control" name="email" id="" aria-describedby="helpId" placeholder="">
     </div>
-    <div class="form-group">
-        <label for="">Mot de passe</label>
-       @if($errors->has('password'))
-       @foreach ($errors->get('password') as $error)
-        <div class="text-danger">{{ $errors->first('password') }}</div>   
-       @endforeach
-       @endif
-        <input type="text"
-          class="form-control" name="password" id="" aria-describedby="helpId" placeholder="">
-        
- </div>
+
+<div class="form-group">
+<label for="">Profession</label>
+@if($errors->has('email'))
+@foreach ($errors->get('email') as $error)
+ <div class="text-danger">{{ $errors->first('email') }}</div>   
+@endforeach
+@endif
+<input type="text"
+ class="form-control" name="profession" id="" aria-describedby="helpId" placeholder="">
+</div>
+    
     <button class="btn btn-success" type="submit">Submit</button>
 </form>
 @stop

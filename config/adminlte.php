@@ -30,7 +30,7 @@ return [
     |
     */
  
-    'logo' => '<b>Creud</b>WAZO',
+    'logo' => '<b>CRUD</b>WAZO',
  
     'logo_mini' => '<b>C</b>WZ',
  
@@ -115,11 +115,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'send mail',
+            'url'         => 'mailform',
+            'icon'        => 'envelope',
+            
         ],
         [
             'text'    => 'Les utilisateurs',
@@ -132,7 +131,9 @@ return [
                 [
                     'text' => 'Ajouter un utilisateur',
                     'url'  => '/user/create',
+                    'can'=> 'admin',
                 ],
+               
                
             ],
         ],
@@ -143,10 +144,12 @@ return [
                 [
                     'text' => 'Nos Roles',
                     'url'  => 'role',
+                    'can' => 'admin',
                 ],
                 [
                     'text' => 'Ajouter un Roles',
                     'url'  => 'role/create',
+                    'can' => 'admin',
                 ],
                
             ],
@@ -162,6 +165,8 @@ return [
                 [
                     'text' => 'Ajouter un Article',
                     'url'  => 'article/create',
+                    'can' => 'create',
+                    
                 ],
                
             ],
@@ -173,10 +178,12 @@ return [
                 [
                     'text' => 'Nos Profiles',
                     'url'  => 'profile',
+                    'can' => 'admin',
                 ],
                 [
                     'text' => 'Ajouter un Profile',
                     'url'  => 'profile/create',
+                    'can' => 'admin',
                 ],
                
             ],

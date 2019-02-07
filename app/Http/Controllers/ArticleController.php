@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Storage;
+use Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticle;
 use App\Http\Requests\UpdateArticle;
+use App\Services\Intervention;
 
 class ArticleController extends Controller
 {
@@ -17,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article= Article::all();
+        $article= Article::articlesTrier();
         return view('article',compact('article'));
     }
 
@@ -37,16 +39,24 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticle $request)
+    public function store(StoreArticle $request, Intervention $intervention )
     {
+        
         $newarticle= new Article;
+        $newarticle->image = $intervention->imgresize('image', 200, 200, $request->image);
         $newarticle->name=$request->name;
         $newarticle->description=$request->description;
         $newarticle->site=$request->site;
-        $newarticle->image=$request->image->store('','image');
         $newarticle->save();
+
+        
+
+        //rechargement de l'index
+        //creer variable article vide
+        //mettre dedans (=) mes articles que je récupère == Article::all();
         $article=Article::all();
-        return view('article');
+        
+        return view('article',compact('article'));
 
     }
 
@@ -59,6 +69,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article=Article::where('id',$id)->first();
+        //$this->authorize('view',$article);
         return view ('article-show',compact('article'));
     }
 
@@ -81,14 +92,16 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateArticle $request, $id)
+    public function update(UpdateArticle $request, Article $article)
     {
-        $article = Article::find($id);
+       // $article = Article::find($id);
         //$user = new User;
          $article->name=$request->name;
          $article->description=$request->description;
-         $article->site=$request->site;
+         $article->image=$request->image-> store('', 'image');
+        $article->site=$request->site;
          $article->save();
+         $article=Article::all();
         return view('article',compact('article'));
     }
 

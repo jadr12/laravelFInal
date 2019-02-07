@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Profil;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProfile;
+use App\Http\Requests\UpdateProfile;
 
 class ProfilController extends Controller
 {
@@ -14,8 +16,9 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $allprofile=Profil::all();
+        return view ('profile',compact('allprofile'));
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +27,7 @@ class ProfilController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile-create');
     }
 
     /**
@@ -33,9 +36,19 @@ class ProfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProfile $request)
     {
-        //
+        $newprofile= new Profil;
+        $newprofile->adresse=$request->adresse;
+        $newprofile->ville=$request->ville;
+        $newprofile->cp=$request->cp;
+        $newprofile->np=$request->np;
+        $newprofile->gsm=$request->gsm;
+        $newprofile->gsm2=$request->gsm2;
+        $newprofile->fixe=$request->fixe;
+        $newprofile->save();
+        $profile=Profil::all();
+        return view('home');
     }
 
     /**
@@ -44,9 +57,10 @@ class ProfilController extends Controller
      * @param  \App\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function show(Profil $profil)
+    public function show($id)
     {
-        //
+        $allprofile=Profil::where('id',$id)->first();
+        return view ('profil-show',compact('allprofile'));
     }
 
     /**
@@ -55,9 +69,10 @@ class ProfilController extends Controller
      * @param  \App\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profil $profil)
+    public function edit($id)
     {
-        //
+        $allprofile=Profil::where('id', $id)->first();
+        return view ('profile-edit',compact('profil'));
     }
 
     /**
@@ -67,9 +82,19 @@ class ProfilController extends Controller
      * @param  \App\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profil $profil)
+    public function update(UpdateProfile $request, $id)
     {
-        //
+        $profile = Profil::find($id);
+        $profile->adresse=$request->adresse;
+        $profile->ville=$request->ville;
+        $profile->cp=$request->cp;
+        $profile->np=$request->np;
+        $profile->gsm=$request->gsm;
+        $profile->gsm2=$request->gsm2;
+        $profile->fixe=$request->fixe;
+        $profile->save();
+
+        return view('profile',compact('allprofile'));
     }
 
     /**
@@ -78,8 +103,10 @@ class ProfilController extends Controller
      * @param  \App\Profil  $profil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profil $profil)
+    public function destroy($profil)
     {
-        //
+        $profil = Profil::find($profil);
+        $profil->delete();
+        return redirect()->back();
     }
 }

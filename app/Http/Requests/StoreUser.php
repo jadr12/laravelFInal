@@ -24,11 +24,12 @@ class StoreUser extends FormRequest
      */
     public function rules()
     {
-        
+        $id=$this->route('user')->id;
         return [
+            
             'name' =>'required|max:30|min:3',
             'firstname'=>'required|max:30|min:3',
-            'email'=>'required|email|unique:users,email',
+            'email'=>'required|email|unique:users,email,'.$id.'id',
             'password'=>'required|max:15|min:5'
         ];
     }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,9 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo('App\Role','role_id','id');
+    }
+    public function isAdmin(){
+        return Auth::user()->role->name =='admin';
     }
     public function profile()
    {
@@ -43,3 +47,5 @@ class User extends Authenticatable
 
         protected $table ='users';
     }
+
+
